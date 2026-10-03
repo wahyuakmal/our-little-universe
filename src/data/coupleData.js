@@ -8,7 +8,7 @@
 export const coupleConfig = {
   // Identitas Pasangan
   partner1: "Wahyu",
-  partner2: "Elena",
+  partner2: "Nur",
   anniversaryDate: "2024-05-18", // Format YYYY-MM-DD untuk penghitung hari otomatis
 
   // Musik Latar
