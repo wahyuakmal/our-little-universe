@@ -9,7 +9,7 @@ export const coupleConfig = {
   // Identitas Pasangan
   partner1: "Wahyu",
   partner2: "Nur",
-  anniversaryDate: "2024-05-18", // Format YYYY-MM-DD untuk penghitung hari otomatis
+  anniversaryDate: "0000-00-00", // Format YYYY-MM-DD untuk penghitung hari otomatis
 
   // Musik Latar
   music: {
@@ -21,11 +21,11 @@ export const coupleConfig = {
 
 export const coupleDataByLang = {
   // ==========================================
-  // BAHASA INDONESIA (DEFAULT)
+  // BAHASA INggris (DEFAULT)
   // ==========================================
-  id: {
+  en: {
     title: "OUR LITTLE UNIVERSE",
-    tagline: "Ruang digital untuk mendokumentasikan perjalanan cinta kita",
+    tagline: "A digital space to document our love story",
 
     nav: {
       story: "01 CERITA",
@@ -36,10 +36,10 @@ export const coupleDataByLang = {
     },
 
     opening: {
-      strangersText: "Dua orang asing.",
-      storyText: "Satu cerita tak terduga.",
-      pauseText: "Dan entah bagaimana…",
-      culminationText: "Kita menjadi kita.",
+      strangersText: "Berawal dari dua asing di riuhnya dunia.",
+      storyText: "Terselip satu cerita yang tak pernah diduga.",
+      pauseText: "Hingga detik demi detik berlalu…",
+      culminationText: "Kata 'aku' dan 'kamu' berubah menjadi 'kita'.",
       buttonText: "MASUKI SEMESTA KITA",
       chapterText: "Babak 00 • Prolog",
       skipText: "Lewati intro"
