@@ -13,7 +13,7 @@ export const coupleConfig = {
 
   // Musik Latar
   music: {
-    audioSrc: "https://cdn.freesound.org/previews/612/612642_11861866-lq.mp3",
+    audioSrc: "/audio/music.mp3",
     title: "River Flows In You / Ambient Romance",
     artist: "Acoustic Melody"
   }
@@ -92,7 +92,7 @@ hari ketika dua orang yang tidak saling mengenal, akhirnya dipertemukan.`,
       milestones: [
         {
           id: "milestone-1",
-          date: "18 MEI 2024",
+          date: "25 JULI 2025",
           title: "Sapaan Pertama",
           subtitle: "Hujan gerimis, secangkir kopi, dan rasa canggung",
           description: "Sebuah percakapan spontan di bawah atap kedai kopi kala hujan. Kita berdua berusaha bersikap biasa, meski di dalam hati tak satupun dari kita yang ingin hujan lekas reda.",
