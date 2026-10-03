@@ -9,7 +9,7 @@ export const coupleConfig = {
   // Identitas Pasangan
   partner1: "Wahyu",
   partner2: "Nur",
-  anniversaryDate: "0000-00-00", // Format YYYY-MM-DD untuk penghitung hari otomatis
+  anniversaryDate: "2024-05-18", // Format YYYY-MM-DD untuk penghitung hari otomatis
 
   // Musik Latar
   music: {
@@ -21,11 +21,11 @@ export const coupleConfig = {
 
 export const coupleDataByLang = {
   // ==========================================
-  // BAHASA INggris (DEFAULT)
+  // BAHASA INDONESIA (DEFAULT)
   // ==========================================
-  en: {
+  id: {
     title: "OUR LITTLE UNIVERSE",
-    tagline: "A digital space to document our love story",
+    tagline: "Ruang digital untuk mendokumentasikan perjalanan cinta kita",
 
     nav: {
       story: "01 CERITA",
@@ -39,7 +39,7 @@ export const coupleDataByLang = {
       strangersText: "Berawal dari dua asing di riuhnya dunia.",
       storyText: "Terselip satu cerita yang tak pernah diduga.",
       pauseText: "Hingga detik demi detik berlalu…",
-      culminationText: "Kata 'aku' dan 'kamu' berubah menjadi 'kita'.",
+      culminationText: "Kita menjadi satu",
       buttonText: "MASUKI SEMESTA KITA",
       chapterText: "Babak 00 • Prolog",
       skipText: "Lewati intro"
@@ -47,7 +47,7 @@ export const coupleDataByLang = {
 
     hero: {
       badge: "SEMESTA KECIL KITA",
-      title: "Di antara dua orang asing,\nkita menjadi kita.",
+      title: "Di antara dua orang asing,\nkita menjadi Satu.",
       subtitle: "Kumpulan momen kecil, kenangan, dan cerita sunyi yang perlahan menjadi segalanya bagi kita berdua.",
       scrollText: "GULIR UNTUK MENJELAJAHI",
       mainImage: "https://images.unsplash.com/photo-1518199266791-5375a83190b7?q=80&w=1600&auto=format&fit=crop",
@@ -61,15 +61,21 @@ export const coupleDataByLang = {
       sectionNumber: "01",
       sectionTitle: "AWAL KISAH KITA",
       subheading: "Setiap kisah memiliki awal.\nKisah kita bersemi di antara kebetulan dan takdir.",
-      date: "18.05.2024",
+      date: "25.07.2025",
       chapterTag: "Babak I",
-      title: "Pertemuan yang Tak Disengaja",
-      location: "Kedai Kopi Kecil & Sudut Jalan Kala Hujan",
-      description: `Kita sama sekali tidak pernah merencanakannya. Itu hanyalah sore hari biasa, saat rintik hujan membasahi kaca dan hiruk pikuk kota bergerak tergesa-gesa. Kita berdua datang dari dua dunia yang berbeda, berlari mencari tempat berteduh di bawah emperan atap kayu yang sama.
+      title: "Pertemuan di Ranggon Jaya",
+      location: "Tempat Kerja — Ranggon Jaya",
+      description: `Awalnya, kita hanyalah dua orang yang menjalani hari seperti biasanya. Datang untuk bekerja, menyelesaikan tugas, dan pulang dengan cerita masing-masing. Tidak ada yang istimewa dari hari itu—setidaknya, sampai kita dipertemukan di tempat yang sama.
 
-Berawal dari sebuah senyuman canggung dan secangkir espresso yang hampir tumpah, obrolan singkat itu perlahan mengalir tanpa henti hingga larut malam. Kita bercerita tentang film-film favorit, buku-buku yang menemani kita terjaga hingga pukul tiga pagi, dan perasaan hangat yang aneh—seolah kita sudah pernah saling mengenal dalam mimpi yang pernah singgah.
+Di antara kesibukan, rutinitas, dan suasana tempat kerja di Ranggon Jaya, sebuah pertemuan sederhana perlahan menjadi awal dari sesuatu yang tidak pernah kita duga. Mungkin hanya sapaan kecil, percakapan singkat, atau sekadar tatapan yang bahkan saat itu tidak kita sadari akan memiliki arti begitu besar.
 
-Sebelum hari itu, kita hanyalah dua orang asing yang mengarungi ruang dan waktu masing-masing. Namun setelah hari itu, gravitasi di antara kita mulai bekerja perlahan, mendekatkan langkah kita berdua.`,
+Hari-hari berikutnya membuat kita semakin sering bertemu. Dari yang awalnya hanya rekan di tempat kerja, perlahan muncul rasa nyaman yang sulit dijelaskan. Percakapan yang tadinya biasa mulai menjadi sesuatu yang ditunggu. Kehadiran yang awalnya terasa kebetulan, perlahan berubah menjadi bagian dari keseharian.
+
+Lucunya, kita tidak pernah tahu bahwa seseorang yang kita temui di tengah rutinitas pekerjaan ternyata akan menjadi seseorang yang begitu berarti dalam perjalanan hidup kita.
+
+Ranggon Jaya mungkin hanya sebuah tempat di mana kita bekerja. Namun bagi kita, tempat itu akan selalu menjadi saksi dari satu hal sederhana yang mengubah banyak hal:
+
+hari ketika dua orang yang tidak saling mengenal, akhirnya dipertemukan.`,
       quote: "“Dunia di luar begitu bising, namun duduk di hadapanmu terasa seperti menemukan ruang paling tenang di seluruh semesta.”",
       image1: "https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?q=80&w=1200&auto=format&fit=crop",
       image1Caption: "Sudut kedai kopi tempat waktu terasa berhenti",
