@@ -31,8 +31,8 @@ export const LoveLetterSection = () => {
           <div className="w-12 h-[1px] bg-warm-300/20 mt-4" />
         </div>
 
-        {/* Letter Paragraphs */}
-        <div className="space-y-6 max-w-3xl mx-auto font-serif text-base sm:text-lg md:text-xl text-warm-100/90 font-light leading-relaxed text-justify sm:text-left">
+        {/* Letter Paragraphs (Diatur rata kanan-kiri / justify untuk semua layar) */}
+        <div className="space-y-6 max-w-3xl mx-auto font-serif text-base sm:text-lg md:text-xl text-warm-100/90 font-light leading-relaxed text-justify">
           {loveLetter.paragraphs.map((para, i) => (
             <p key={i} className="indent-6 sm:indent-8">
               {para}

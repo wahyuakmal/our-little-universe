@@ -76,7 +76,7 @@ export const MomentsSection = () => {
           <motion.div
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            className="mt-6 flex justify-center"
+            className="font-sans text-xs sm:text-sm text-warm-200/80 whitespace-pre-line text-justify"
           >
             <button
               onClick={() => openDashboardModal('moments')}

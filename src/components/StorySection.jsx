@@ -20,7 +20,7 @@ export const StorySection = () => {
           transition={{ duration: 1 }}
           className="flex items-center gap-3 mb-4"
         >
-          <span className="text-xs md:text-sm font-sans tracking-mega-wide uppercase text-champagne-400">
+          <span className="text-justify md:text-sm font-sans tracking-mega-wide uppercase text-champagne-400">
             {story.sectionNumber} — {story.sectionTitle}
           </span>
           <div className="h-[1px] w-12 bg-champagne-400/30" />
@@ -145,7 +145,7 @@ export const StorySection = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 1.2, delay: 0.45 }}
-              className="space-y-6 text-warm-200/80 font-sans text-sm md:text-base leading-relaxed font-light whitespace-pre-line"
+              className="space-y-6 text-warm-200/80 font-sans text-sm md:text-base leading-relaxed font-light whitespace-pre-line text-justify"
             >
               {story.description}
             </motion.div>
