@@ -1,31 +1,56 @@
-import React, { useMemo } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { motion } from 'framer-motion';
 import { ArrowDown } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 import { useAdmin } from '../context/AdminContext';
+import { getCoupleSettings } from '../services/supabaseService';
 
 export const HeroSection = () => {
   const { data, coupleConfig } = useLanguage();
   const { isAdmin, openDashboardModal } = useAdmin();
 
-  // Calculate days together dynamically
+  const [dbData, setDbData] = useState(null);
+
+  // Ambil data terbaru dari Supabase saat komponen dimuat
+  useEffect(() => {
+    async function fetchSupabaseData() {
+      const result = await getCoupleSettings();
+      if (result) {
+        setDbData(result);
+      }
+    }
+    fetchSupabaseData();
+  }, []);
+
+  // Prioritaskan data dari Supabase, jika belum ada fallback ke Language Context
+  const partner1 = dbData?.partner1 || coupleConfig?.partner1 || 'Partner 1';
+  const partner2 = dbData?.partner2 || coupleConfig?.partner2 || 'Partner 2';
+  const anniversaryDate = dbData?.anniversary_date || coupleConfig?.anniversaryDate;
+  const heroTitle = dbData?.hero_title || data?.hero?.title;
+  const heroSubtitle = dbData?.hero_subtitle || data?.hero?.subtitle;
+  const heroQuote = dbData?.hero_quote || data?.hero?.quoteOverlay;
+  const heroImage = dbData?.hero_image_url || data?.hero?.mainImage;
+
+  // Perhitungan hari bersama berdasarkan anniversaryDate dari Supabase / Config
   const daysTogether = useMemo(() => {
     try {
-      const start = new Date(coupleConfig.anniversaryDate);
+      if (!anniversaryDate) return 680;
+      const start = new Date(anniversaryDate);
       const now = new Date();
-      const diffTime = Math.abs(now - start);
-      const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+      const diffTime = Math.max(0, now - start);
+      const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
       return isNaN(diffDays) ? 680 : diffDays;
     } catch {
       return 680;
     }
-  }, [coupleConfig.anniversaryDate]);
+  }, [anniversaryDate]);
 
   const scrollToStory = () => {
     const el = document.getElementById('story');
     if (el) {
       const yOffset = -60;
-      const y = el.getBoundingClientRect().top + window.pageYOffset + yOffset;
+      const currentScroll = window.scrollY || window.pageYOffset;
+      const y = el.getBoundingClientRect().top + currentScroll + yOffset;
       window.scrollTo({ top: y, behavior: 'smooth' });
     }
   };
@@ -43,7 +68,7 @@ export const HeroSection = () => {
         >
           <span className="w-1.5 h-1.5 rounded-full bg-champagne-300 animate-pulse" />
           <span className="text-[10px] md:text-[11px] tracking-mega-wide uppercase font-sans text-warm-300/80">
-            {data.hero.badge}
+            {data?.hero?.badge}
           </span>
         </motion.div>
 
@@ -54,7 +79,7 @@ export const HeroSection = () => {
           transition={{ duration: 1.5, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
           className="font-serif text-3xl sm:text-5xl md:text-6xl lg:text-7xl leading-[1.18] tracking-tight text-warm-50 font-normal mb-6 whitespace-pre-line text-glow-subtle"
         >
-          {data.hero.title}
+          {heroTitle}
         </motion.h1>
 
         {/* Subtitle */}
@@ -64,11 +89,11 @@ export const HeroSection = () => {
           transition={{ duration: 1.4, delay: 0.6 }}
           className="font-sans text-xs sm:text-sm md:text-base text-warm-300/70 max-w-2xl font-light tracking-wide leading-relaxed"
         >
-          {data.hero.subtitle}
+          {heroSubtitle}
         </motion.p>
       </div>
 
-      {/* Main Couple Photo: Cinematic, rounded, subtle grain, soft shadow */}
+      {/* Main Couple Photo */}
       <motion.div
         initial={{ opacity: 0, scale: 0.96, y: 30 }}
         animate={{ opacity: 1, scale: 1, y: 0 }}
@@ -78,8 +103,8 @@ export const HeroSection = () => {
         <div className="relative rounded-2xl md:rounded-3xl overflow-hidden cinematic-shadow bg-[#121212] border border-white/[0.08] aspect-[16/10] md:aspect-[21/10]">
           {/* Main Couple Image */}
           <motion.img
-            src={data.hero.mainImage}
-            alt={`${coupleConfig.partner1} & ${coupleConfig.partner2}`}
+            src={heroImage}
+            alt={`${partner1} & ${partner2}`}
             className="w-full h-full object-cover object-center transform transition-transform duration-1000 ease-out group-hover:scale-[1.025] filter contrast-[1.04] brightness-[0.92]"
             loading="eager"
           />
@@ -106,21 +131,21 @@ export const HeroSection = () => {
             </button>
           )}
 
-          {/* Overlay Details (Bottom Left & Bottom Right) */}
+          {/* Overlay Details */}
           <div className="absolute bottom-6 md:bottom-8 left-6 md:left-10 right-6 md:right-10 flex flex-col md:flex-row items-start md:items-end justify-between gap-4 pointer-events-none">
             <div>
               <p className="font-serif italic text-base md:text-xl text-warm-100/90 font-light max-w-lg mb-1 drop-shadow-md">
-                {data.hero.quoteOverlay}
+                {heroQuote}
               </p>
               <p className="text-[10px] tracking-widest uppercase font-sans text-warm-300/50">
-                {data.hero.imageCaption}
+                {data?.hero?.imageCaption}
               </p>
             </div>
 
             {/* Days Together Pill */}
             <div className="glass-pill px-4 py-2 rounded-full border border-white/10 flex items-center gap-2">
               <span className="text-[10px] tracking-mega-wide uppercase text-warm-300/80 font-sans">
-                {data.hero.daysPrefix} {daysTogether} {data.hero.daysSuffix}
+                {data?.hero?.daysPrefix} {daysTogether} {data?.hero?.daysSuffix}
               </span>
             </div>
           </div>
@@ -139,7 +164,7 @@ export const HeroSection = () => {
           className="group flex flex-col items-center gap-2 cursor-pointer focus:outline-none"
         >
           <span className="text-[10px] tracking-mega-wide uppercase font-sans text-warm-300/50 group-hover:text-warm-200 transition-colors">
-            {data.hero.scrollText}
+            {data?.hero?.scrollText}
           </span>
           <motion.div
             animate={{ y: [0, 6, 0] }}

@@ -1,1 +1,96 @@
-{}
+{
+  "hero": {
+    "mainImage": "/images/1791531648419_WhatsApp_Image_2026-10-04_at_22_44_33.jpeg",
+    "imageCaption": "Tomyam Bangkinang / 22:30 WIB"
+  },
+  "momentsGallery": [
+    {
+      "id": "custom-m-1791533008418",
+      "date": "9/10/2026",
+      "image": "/images/1791532982817_WDZP9938_JPG.jpg",
+      "caption": "Kamu mengubah hari-hari biasa menjadi kenangan yang tak ingin pernah kuhapus.\n",
+      "location": "",
+      "aspect": "square"
+    },
+    {
+      "id": "custom-m-1791532950285",
+      "date": "9/10/2026",
+      "image": "/images/1791532928434_FJMF2828_JPG.jpg",
+      "caption": "senyuman yang membuat hati tenang",
+      "location": "",
+      "aspect": "square"
+    },
+    {
+      "id": "custom-m-1791532884552",
+      "date": "9/10/2026",
+      "image": "/images/1791532879193_GNVT1063_JPG.jpg",
+      "caption": "Jika aku bisa mengulang satu momen dua kali, itu pasti momen bersamamu.",
+      "location": "",
+      "aspect": "square"
+    },
+    {
+      "id": "custom-m-1791532808841",
+      "date": "9/10/2026",
+      "image": "/images/1791532802401_WhatsApp_Image_2026-10-08_at_23_55_12.jpeg",
+      "caption": "Di antara semua kekacauan, aku menemukan ketenanganku di dalam dirimu.",
+      "location": "",
+      "aspect": "square"
+    },
+    {
+      "id": "m-1",
+      "image": "/images/1791531843462_WhatsApp_Image_2026-10-06_at_14_06_08.jpeg",
+      "date": "12.08.2024",
+      "caption": "“Sore santai tanpa rencana yang kini menjadi salah satu sore favoritku.”",
+      "location": "Toko Buku Tua",
+      "aspect": "portrait"
+    },
+    {
+      "id": "m-6",
+      "image": "/images/1791532166091_BWUV8330_PNG.png",
+      "date": "14.02.2025",
+      "caption": "“Bisikan lembut sebelum terlelap, ditemani irama rintik hujan di atap.”",
+      "location": "Kamar Kita",
+      "aspect": "portrait"
+    },
+    {
+      "id": "m-2",
+      "image": "/images/1791532774489_WhatsApp_Image_2026-10-08_at_23_55_11.jpeg",
+      "date": "23.09.2024",
+      "caption": "“Tangan saling menggenggam, secangkir teh hangat, dan hening yang menenangkan.”",
+      "location": "Teras Sore",
+      "aspect": "landscape"
+    },
+    {
+      "id": "m-3",
+      "image": "/images/1791537046280_Cuplikan_layar_2026-09-26_075149.png",
+      "date": "04.11.2024",
+      "caption": "“Kutemukan tawamu yang paling tulus tepat di bawah hangatnya mentari.”",
+      "location": "Taman Kota",
+      "aspect": "portrait"
+    },
+    {
+      "id": "m-7",
+      "image": "/images/1791537100105_YJEK2615_JPG.jpg",
+      "date": "30.03.2025",
+      "caption": "“Foto polaroid tua dari kamera antik yang kita temukan di pasar loak.”",
+      "location": "Pasar Seni",
+      "aspect": "square"
+    },
+    {
+      "id": "m-5",
+      "image": "/images/1791537617258_WhatsApp_Image_2026-10-08_at_23_55_02.jpeg",
+      "date": "01.01.2025",
+      "caption": "“Fajar pertama di tahun baru, menyambut perjalanan kita berikutnya.”",
+      "location": "Tebing Pantai Timur",
+      "aspect": "square"
+    },
+    {
+      "id": "m-8",
+      "image": "/images/1791537690547_MJQY3500_JPG.jpg",
+      "date": "22.06.2025",
+      "caption": "“Kaki telanjang di atas pasir pantai, tertawa sampai lupa waktu.”",
+      "location": "Pesisir Teluk",
+      "aspect": "portrait"
+    }
+  ]
+}

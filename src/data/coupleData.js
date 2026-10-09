@@ -8,7 +8,7 @@
 export const coupleConfig = {
   // Identitas Pasangan
   partner1: "Wahyu",
-  partner2: "Nur Apiza",
+  partner2: "Nur",
   anniversaryDate: "0000-00-00", // Format YYYY-MM-DD untuk penghitung hari otomatis
 
   // Musik Latar
@@ -53,7 +53,7 @@ export const coupleDataByLang = {
       mainImage: "https://images.unsplash.com/photo-1518199266791-5375a83190b7?q=80&w=1600&auto=format&fit=crop",
       imageCaption: "Koordinat petang yang teduh / 18:42 WIB",
       quoteOverlay: "“Di semesta yang seluas ini, hatiku memilih ketenangan di sampingmu.”",
-      daysPrefix: "Hari ke-",
+      daysPrefix: "Hari ke-435",
       daysSuffix: "di semesta kita"
     },
 
@@ -63,8 +63,8 @@ export const coupleDataByLang = {
       subheading: "Setiap kisah memiliki awal.\nKisah kita bersemi di antara kebetulan dan takdir.",
       date: "25.07.2025",
       chapterTag: "Babak I",
-      title: "Pertemuan di Ranggon Jaya Mart",
-      location: "Tempat Kerja — Ranggon Jaya Mart",
+      title: "Pertemuan Awal di Ranggon Jaya Mart",
+      location: "Jalan D.I. Panjaitan, Bangkinang, Riau",
       description: `Awalnya, kita hanyalah dua orang yang menjalani hari seperti biasanya. Datang untuk bekerja, menyelesaikan tugas, dan pulang dengan cerita masing-masing. Tidak ada yang istimewa dari hari itu—setidaknya, sampai kita dipertemukan di tempat yang sama.
 
 Di antara kesibukan, rutinitas, dan suasana tempat kerja di Ranggon Jaya Mart, sebuah pertemuan sederhana perlahan menjadi awal dari sesuatu yang tidak pernah kita duga. Mungkin hanya sapaan kecil, percakapan singkat, atau sekadar tatapan yang bahkan saat itu tidak kita sadari akan memiliki arti begitu besar.
