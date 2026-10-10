@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Sliders, X, Copy, Check, Info, Upload, Save, Loader2, Image as ImageIcon } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
-import { getCoupleSettings, updateCoupleSettings, uploadHeroImage } from '../services/supabaseService';
+import { saveCoupleSettings } from '../services/supabaseService';
 
 export const CustomizationModal = () => {
   const { data, coupleConfig } = useLanguage();

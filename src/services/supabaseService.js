@@ -42,3 +42,6 @@ export const saveCoupleSettings = async (newData) => {
     return { data: null, error: err };
   }
 };
+
+// Alias agar kompatibel dengan CustomizationModal.jsx
+export const updateCoupleSettings = saveCoupleSettings;
