@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Sliders, X, Copy, Check, Info, Upload, Save, Loader2, Image as ImageIcon } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
-import { saveCoupleSettings as updateCoupleSettings } from '../services/supabaseService';
+// Import fungsi Supabase yang dibutuhkan (termasuk getCoupleSettings & uploadHeroImage)
+import { getCoupleSettings, saveCoupleSettings as updateCoupleSettings, uploadHeroImage } from '../services/supabaseService';
 
 export const CustomizationModal = () => {
   const { data, coupleConfig } = useLanguage();
