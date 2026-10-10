@@ -1,66 +1,44 @@
-import { supabase } from '../lib/supabase';
+import { createClient } from '@supabase/supabase-js';
 
-// 1. Ambil data couple_settings dari database Supabase
-export async function getCoupleSettings() {
+const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
+const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
+
+export const supabase = createClient(supabaseUrl, supabaseAnonKey);
+
+// 1. Fungsi Mengambil Data dari Supabase
+export const getCoupleSettings = async () => {
   try {
     const { data, error } = await supabase
       .from('couple_settings')
-      .select('*')
+      .select('data')
+      .eq('id', 1)
       .maybeSingle();
 
     if (error) {
-      console.error('Error fetching couple settings:', error.message);
-      return null;
+      console.error('Gagal mengambil data dari Supabase:', error);
+      return { data: null, error };
     }
-    return data;
-  } catch (err) {
-    console.error('Unexpected error fetching settings:', err);
-    return null;
-  }
-}
 
-// 2. Update/Upsert data couple_settings (Memastikan selalu menargetkan ID 1)
-export async function updateCoupleSettings(settings) {
+    return { data: data?.data || {}, error: null };
+  } catch (err) {
+    return { data: null, error: err };
+  }
+};
+
+// 2. Fungsi Menyimpan Data ke Supabase
+export const saveCoupleSettings = async (newData) => {
   try {
     const { data, error } = await supabase
       .from('couple_settings')
-      .upsert({ id: 1, ...settings }) // Memaksa penggunaan ID 1
-      .select();
+      .upsert({ id: 1, data: newData });
 
     if (error) {
-      console.error('Error updating couple settings:', error.message);
-      return null;
-    }
-    return data;
-  } catch (err) {
-    console.error('Unexpected error updating settings:', err);
-    return null;
-  }
-}
-
-// 3. Upload foto hero ke Storage Bucket 'universe-assets'
-export async function uploadHeroImage(file) {
-  try {
-    const fileExt = file.name.split('.').pop();
-    const fileName = `hero-${Date.now()}.${fileExt}`;
-    const filePath = `hero/${fileName}`;
-
-    const { error: uploadError } = await supabase.storage
-      .from('universe-assets')
-      .upload(filePath, file);
-
-    if (uploadError) {
-      console.error('Error uploading image:', uploadError.message);
-      return null;
+      console.error('Gagal menyimpan data ke Supabase:', error);
+      return { data: null, error };
     }
 
-    const { data } = supabase.storage
-      .from('universe-assets')
-      .getPublicUrl(filePath);
-
-    return data.publicUrl;
+    return { data, error: null };
   } catch (err) {
-    console.error('Unexpected error during image upload:', err);
-    return null;
+    return { data: null, error: err };
   }
-}
+};
