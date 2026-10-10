@@ -29,3 +29,6 @@ ehthumbs.db
 # Environment variables
 .env
 .env.production
+
+.vercel
+.env*

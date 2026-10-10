@@ -1,5 +1,7 @@
 import React, { createContext, useContext, useState, useEffect, useCallback } from 'react';
 import { setStoredItem, getStoredItem, removeStoredItem } from '../utils/storage';
+// Import fungsi Supabase (sesuaikan path relatif file supabaseService jika berbeda)
+import { getCoupleSettings, saveCoupleSettings } from '../services/supabaseService';
 
 const AdminContext = createContext();
 
@@ -31,7 +33,7 @@ export const AdminProvider = ({ children }) => {
     }
   });
 
-  // On mount, load from IndexedDB and check local dev server if available
+  // On mount, load from IndexedDB and Supabase Database
   useEffect(() => {
     // 1. Load from IndexedDB (preserves large photos even if localStorage hit quota)
     getStoredItem('olu_custom_data', null).then((idbData) => {
@@ -43,42 +45,34 @@ export const AdminProvider = ({ children }) => {
       }
     });
 
-    // 2. Safely check local dev server /api/data without throwing syntax errors on static hosts
-    fetch('/api/data')
-      .then((res) => {
-        if (!res.ok) return null;
-        const contentType = res.headers.get('content-type');
-        if (contentType && contentType.includes('application/json')) {
-          return res.json();
-        }
-        return null;
-      })
-      .then((serverData) => {
-        if (serverData && serverData.exists !== false && typeof serverData === 'object') {
+    // 2. Load directly from Supabase Database (Menggantikan /api/data)
+    getCoupleSettings()
+      .then(({ data: serverData, error }) => {
+        if (!error && serverData && typeof serverData === 'object') {
           setCustomData((prev) => ({
             ...serverData,
             ...prev,
           }));
         }
       })
-      .catch(() => {});
+      .catch((err) => {
+        console.error("Gagal memuat data dari Supabase:", err);
+      });
   }, []);
 
-  // Save changes to IndexedDB, localStorage, and local server
-  const persistCustomData = useCallback((newData) => {
+  // Save changes to IndexedDB, localStorage, and Supabase Database
+  const persistCustomData = useCallback(async (newData) => {
     setCustomData(newData);
     
     // Save to hybrid storage (IndexedDB + localStorage)
     setStoredItem('olu_custom_data', newData);
 
-    // If local dev server is running, also persist directly to public/coupleCustomData.json
+    // Save directly to Supabase Database (Menggantikan /api/save-data)
     try {
-      fetch('/api/save-data', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(newData),
-      }).catch(() => {});
-    } catch {}
+      await saveCoupleSettings(newData);
+    } catch (err) {
+      console.error("Gagal menyimpan data ke Supabase:", err);
+    }
   }, []);
 
   // Login method
@@ -255,16 +249,14 @@ export const AdminProvider = ({ children }) => {
   };
 
   // 5. Reset to original code defaults
-  const resetToDefault = () => {
+  const resetToDefault = async () => {
     removeStoredItem('olu_custom_data');
     setCustomData({});
     try {
-      fetch('/api/save-data', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({}),
-      }).catch(() => {});
-    } catch {}
+      await saveCoupleSettings({});
+    } catch (err) {
+      console.error("Gagal melakukan reset data di Supabase:", err);
+    }
   };
 
   return (
