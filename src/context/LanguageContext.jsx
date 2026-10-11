@@ -1,25 +1,22 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
-import coupleDataRaw from '../data/coupleData';
+import { coupleData } from '../data/coupleData';
 import { getCoupleSettings } from '../services/supabaseService';
-
-// Menangani ekspor coupleData baik berupa default export maupun named export
-const coupleData = coupleDataRaw?.coupleData || coupleDataRaw || {};
 
 const LanguageContext = createContext();
 
 export const LanguageProvider = ({ children }) => {
   const [language, setLanguage] = useState('id');
 
-  // Fungsi pembantu untuk memastikan data lokal selalu siap (tidak pernah undefined)
+  // Fungsi pembantu untuk memastikan fallback data selalu aman
   const getFallbackData = (lang) => {
-    return coupleData[lang] || coupleData['id'] || coupleData['en'] || coupleData || {};
+    if (!coupleData) return {};
+    return coupleData[lang] || coupleData['id'] || coupleData['en'] || {};
   };
 
   const [data, setData] = useState(() => getFallbackData('id'));
   const [coupleConfig, setCoupleConfig] = useState(null);
 
   useEffect(() => {
-    // 1. Ambil data lokal dasar sesuai bahasa
     const baseData = getFallbackData(language);
 
     const loadSupabaseData = async () => {
@@ -28,7 +25,7 @@ export const LanguageProvider = ({ children }) => {
         if (settings) {
           setCoupleConfig(settings);
 
-          // 2. Gabungkan data hero Supabase ke dalam data lokal tanpa menghapus section lain
+          // Timpa data hero dari Supabase tanpa merusak komponen/section lain
           setData({
             ...baseData,
             hero: {
@@ -52,8 +49,10 @@ export const LanguageProvider = ({ children }) => {
     loadSupabaseData();
   }, [language]);
 
+  const safeData = data || getFallbackData(language);
+
   return (
-    <LanguageContext.Provider value={{ language, setLanguage, data: data || getFallbackData(language), coupleConfig }}>
+    <LanguageContext.Provider value={{ language, setLanguage, data: safeData, coupleConfig }}>
       {children}
     </LanguageContext.Provider>
   );
