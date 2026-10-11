@@ -5,7 +5,7 @@ const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
 
 export const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
-// 1. Mengambil data dari Supabase
+// 1. Ambil Data Pasangan
 export const getCoupleSettings = async () => {
   try {
     const { data, error } = await supabase
@@ -15,18 +15,17 @@ export const getCoupleSettings = async () => {
       .maybeSingle();
 
     if (error) {
-      console.error('Gagal mengambil data dari Supabase:', error);
+      console.error('Gagal mengambil data:', error);
       return null;
     }
-
     return data;
   } catch (err) {
-    console.error('Catch error getCoupleSettings:', err);
+    console.error('Error getCoupleSettings:', err);
     return null;
   }
 };
 
-// 2. Menyimpan data ke Supabase
+// 2. Simpan Data Pasangan
 export const saveCoupleSettings = async (newData) => {
   try {
     const { data, error } = await supabase
@@ -34,18 +33,17 @@ export const saveCoupleSettings = async (newData) => {
       .upsert({ id: 1, ...newData });
 
     if (error) {
-      console.error('Gagal menyimpan data ke Supabase:', error);
+      console.error('Gagal menyimpan data:', error);
       return null;
     }
-
     return data || true;
   } catch (err) {
-    console.error('Catch error saveCoupleSettings:', err);
+    console.error('Error saveCoupleSettings:', err);
     return null;
   }
 };
 
-// 3. Upload Foto Hero ke Supabase Storage Bucket ('universe-assets')
+// 3. Upload Foto Hero ke Supabase Storage (WAJIB DIBERI 'export')
 export const uploadHeroImage = async (file) => {
   try {
     const fileExt = file.name.split('.').pop();
@@ -57,7 +55,7 @@ export const uploadHeroImage = async (file) => {
       .upload(filePath, file, { upsert: true });
 
     if (uploadError) {
-      console.error('Gagal mengunggah foto:', uploadError);
+      console.error('Gagal mengunggah gambar:', uploadError);
       return null;
     }
 
@@ -67,10 +65,10 @@ export const uploadHeroImage = async (file) => {
 
     return data?.publicUrl || null;
   } catch (err) {
-    console.error('Catch error uploadHeroImage:', err);
+    console.error('Error uploadHeroImage:', err);
     return null;
   }
 };
 
-// Alias ekspor agar kompatibel dengan pemanggilan lama
+// Alias ekspor untuk menjaga kompatibilitas
 export const updateCoupleSettings = saveCoupleSettings;
