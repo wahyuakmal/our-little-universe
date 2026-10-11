@@ -7,34 +7,38 @@ const LanguageContext = createContext();
 export const LanguageProvider = ({ children }) => {
   const [language, setLanguage] = useState('id');
 
-  // Fungsi pembantu untuk memastikan fallback data selalu aman
-  const getFallbackData = (lang) => {
+  // Ambil data lokal berdasarkan bahasa atau struktur objek
+  const getBaseData = (lang) => {
     if (!coupleData) return {};
-    return coupleData[lang] || coupleData['id'] || coupleData['en'] || {};
+    if (coupleData[lang]) return coupleData[lang];
+    if (coupleData['id']) return coupleData['id'];
+    if (coupleData['en']) return coupleData['en'];
+    return coupleData;
   };
 
-  const [data, setData] = useState(() => getFallbackData('id'));
+  const [data, setData] = useState(() => getBaseData('id'));
   const [coupleConfig, setCoupleConfig] = useState(null);
 
   useEffect(() => {
-    const baseData = getFallbackData(language);
-
     const loadSupabaseData = async () => {
+      const baseData = getBaseData(language);
+
       try {
         const settings = await getCoupleSettings();
         if (settings) {
           setCoupleConfig(settings);
 
-          // Timpa data hero dari Supabase tanpa merusak komponen/section lain
+          // Gabungkan data Supabase HANYA untuk bagian hero,
+          // pertahankan seluruh data lokal lainnya (story, timeline, opening, dll)
           setData({
             ...baseData,
             hero: {
-              ...(baseData.hero || {}),
-              person1: settings.person1_name || baseData.hero?.person1,
-              person2: settings.person2_name || baseData.hero?.person2,
-              title: settings.hero_title || baseData.hero?.title,
-              subtitle: settings.hero_subtitle || baseData.hero?.subtitle,
-              image: settings.hero_image_url || baseData.hero?.image,
+              ...(baseData?.hero || {}),
+              person1: settings.person1_name || baseData?.hero?.person1 || '',
+              person2: settings.person2_name || baseData?.hero?.person2 || '',
+              title: settings.hero_title || baseData?.hero?.title || '',
+              subtitle: settings.hero_subtitle || baseData?.hero?.subtitle || '',
+              image: settings.hero_image_url || baseData?.hero?.image || '',
             },
           });
         } else {
@@ -49,10 +53,11 @@ export const LanguageProvider = ({ children }) => {
     loadSupabaseData();
   }, [language]);
 
-  const safeData = data || getFallbackData(language);
+  // Jaminan agar 'data' tidak pernah undefined
+  const currentData = data && Object.keys(data).length > 0 ? data : getBaseData(language);
 
   return (
-    <LanguageContext.Provider value={{ language, setLanguage, data: safeData, coupleConfig }}>
+    <LanguageContext.Provider value={{ language, setLanguage, data: currentData, coupleConfig }}>
       {children}
     </LanguageContext.Provider>
   );
