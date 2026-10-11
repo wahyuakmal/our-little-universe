@@ -9,7 +9,7 @@ export const coupleConfig = {
   // Identitas Pasangan
   partner1: "Wahyu",
   partner2: "Nur",
-  anniversaryDate: "0000-00-00", // Format YYYY-MM-DD untuk penghitung hari otomatis
+  anniversaryDate: "2025-07-25", // Format YYYY-MM-DD untuk penghitung hari otomatis
 
   // Musik Latar
   music: {
@@ -50,10 +50,11 @@ export const coupleDataByLang = {
       title: "Di antara dua orang asing,\nkita menjadi Satu.",
       subtitle: "Kumpulan momen kecil, kenangan, dan cerita sunyi yang perlahan menjadi segalanya bagi kita berdua.",
       scrollText: "GULIR UNTUK MENJELAJAHI",
-      mainImage: "https://images.unsplash.com/photo-1518199266791-5375a83190b7?q=80&w=1600&auto=format&fit=crop",
+      // FOTO HERO LOKAL (Ganti nama file jika berbeda)
+      mainImage: "/images/foto-hero.jpg",
       imageCaption: "Koordinat petang yang teduh / 18:42 WIB",
       quoteOverlay: "“Di semesta yang seluas ini, hatiku memilih ketenangan di sampingmu.”",
-      daysPrefix: "Hari ke-435",
+      daysPrefix: "Hari ke-",
       daysSuffix: "di semesta kita"
     },
 
@@ -284,7 +285,7 @@ hari ketika dua orang yang tidak saling mengenal, akhirnya dipertemukan.`,
       title: "Somewhere between two strangers,\nwe became us.",
       subtitle: "A collection of little moments, memories, and quiet stories that slowly turned into everything.",
       scrollText: "SCROLL TO EXPLORE",
-      mainImage: "https://images.unsplash.com/photo-1518199266791-5375a83190b7?q=80&w=1600&auto=format&fit=crop",
+      mainImage: "/images/foto-hero.jpg",
       imageCaption: "Coordinates of a quiet evening / 18:42 PM",
       quoteOverlay: "“In a universe of billions, my heart chose the stillness next to you.”",
       daysPrefix: "Day",

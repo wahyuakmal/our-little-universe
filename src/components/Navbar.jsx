@@ -142,7 +142,7 @@ export const Navbar = ({ onReplayIntro, isAudioPlaying, onToggleAudio }) => {
               onClick={toggleLanguage}
               className="px-2 py-1 rounded-full border border-white/10 text-[10px] font-mono text-champagne-300"
             >
-              {lang.toUpperCase()}
+              (language || 'id').toUpperCase()
             </button>
 
             {/* Mobile Admin Button */}
